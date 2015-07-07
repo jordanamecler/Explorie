@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpViewController" customModule="Explorie" customModuleProvider="target">
+            <connections>
+                <outlet property="popUpView" destination="CJD-H9-hIw" id="qk4-4S-fkw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJD-H9-hIw" userLabel="PopUpView">
+                    <rect key="frame" x="150" y="50" width="300" height="500"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W09-il-0Dc">
+                            <rect key="frame" x="126" y="462" width="328" height="30"/>
+                            <state key="normal" title="Fechar">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="-14" y="462" width="328" height="30"/>
+                            </variation>
+                            <connections>
+                                <action selector="closePopUp:" destination="-1" eventType="touchUpInside" id="A9d-jS-o7e"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="776-Q7-3CQ"/>
+                        <constraint firstAttribute="height" constant="500" id="uTV-RQ-lRM"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="776-Q7-3CQ"/>
+                            <exclude reference="uTV-RQ-lRM"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="776-Q7-3CQ"/>
+                            <include reference="uTV-RQ-lRM"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="CJD-H9-hIw" secondAttribute="centerX" id="5rC-qt-ECi"/>
+                <constraint firstAttribute="centerY" secondItem="CJD-H9-hIw" secondAttribute="centerY" id="Cgs-7P-ZSS"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="5rC-qt-ECi"/>
+                    <exclude reference="Cgs-7P-ZSS"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="5rC-qt-ECi"/>
+                    <include reference="Cgs-7P-ZSS"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

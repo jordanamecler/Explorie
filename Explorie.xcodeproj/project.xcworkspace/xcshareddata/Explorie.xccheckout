@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E3701F07-9525-4E19-8D9E-6872B7B10415</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Explorie</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9FA4347700FA66952336BFF77D983C27C463E456</key>
+		<string>https://github.com/jordanamecler/Explorie.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Explorie.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9FA4347700FA66952336BFF77D983C27C463E456</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jordanamecler/Explorie.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9FA4347700FA66952336BFF77D983C27C463E456</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9FA4347700FA66952336BFF77D983C27C463E456</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Explorietrue%20BACKUP%20sEM%20FACE</string>
+		</dict>
+	</array>
+</dict>
+</plist>
