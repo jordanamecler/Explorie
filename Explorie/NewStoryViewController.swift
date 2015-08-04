@@ -219,8 +219,6 @@ class NewStoryViewController: UIViewController, UITextFieldDelegate, UIImagePick
         imagePicker.modalPresentationStyle = .Popover
         imagePicker.popoverPresentationController?.sourceView = imagePicker.view
         presentViewController(imagePicker, animated: true, completion: nil)
-    
-
     }
     
     func addTypeView( height:CGFloat )

@@ -50,25 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         self.view.addSubview(logoText)
         
         usernameTextField = UITextField()
-        usernameTextField.frame = CGRectMake(0, 0, 200, 30)
-        usernameTextField.center.x = self.view.center.x
-        usernameTextField.center.y = (logoText.frame.height/2 + logoText.center.y)*1.05
-        usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.placeholder = "Username"
-        usernameTextField.backgroundColor = UIColor.whiteColor()
-        usernameTextField.layer.cornerRadius = 4
-        self.view.addSubview(usernameTextField)
-        
         passwordTextField = UITextField()
-        passwordTextField.frame = CGRectMake(0, 0, 200, 30)
-        passwordTextField.center.x = self.view.center.x
-        passwordTextField.center.y = (usernameTextField.frame.height/2 + usernameTextField.center.y)*1.06
-        passwordTextField.secureTextEntry = true
-        passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.placeholder = "Password"
-        passwordTextField.backgroundColor = UIColor.whiteColor()
-        passwordTextField.layer.cornerRadius = 4
-        self.view.addSubview(passwordTextField)
 
         var signUpButton = UIButton()
         signUpButton.frame = CGRectMake(0, 0, 100, 30)
@@ -76,8 +58,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         signUpButton.backgroundColor = UIColor(red: 49/255, green: 134/255, blue: 165/255, alpha: 1.0)
         signUpButton.setTitle("Sign Up", forState: UIControlState.Normal)
         signUpButton.center.x = self.view.center.x-51
-        signUpButton.center.y = (passwordTextField.frame.height/2 + passwordTextField.center.y)*1.1
-        signUpButton.addTarget(self, action: "signUpButtonPressed", forControlEvents: .TouchUpInside)
+        signUpButton.center.y = self.view.center.y/0.85//(passwordTextField.frame.height/2 + passwordTextField.center.y)*1.1
+        //signUpButton.addTarget(self, action: "signUpButtonPressed", forControlEvents: .TouchUpInside)
+        signUpButton.addTarget(self, action: "signUpPressed", forControlEvents: .TouchUpInside)
         self.view.addSubview(signUpButton)
 
         var logInButton = UIButton()
@@ -86,8 +69,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         logInButton.backgroundColor = UIColor(red: 49/255, green: 134/255, blue: 165/255, alpha: 1.0)
         logInButton.setTitle("Log In", forState: UIControlState.Normal)
         logInButton.center.x = self.view.center.x+51
-        logInButton.center.y = (passwordTextField.frame.height/2 + passwordTextField.center.y)*1.1
-        logInButton.addTarget(self, action: "logInButtonPressed", forControlEvents: .TouchUpInside)
+        logInButton.center.y = self.view.center.y/0.85//(passwordTextField.frame.height/2 + passwordTextField.center.y)*1.1
+        logInButton.addTarget(self, action: "loginPressed", forControlEvents: .TouchUpInside)
+        //logInButton.addTarget(self, action: "logInButtonPressed", forControlEvents: .TouchUpInside)
         self.view.addSubview(logInButton)
 
         var skipLoginButton = UIButton()
@@ -144,35 +128,88 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         return true
     }
     
-    
-    @IBAction func skipLoginButtonPressed()
-    {
-        LibraryAPI.sharedInstance.isLoggedIn = false
-        performSegueWithIdentifier("mainView", sender: nil)
+    func loginPressed() {
+        termsView = PopUpViewController()
+        
+        var entrar = UIButton()
+        entrar.setTitle("Entrar", forState: UIControlState.Normal)
+        entrar.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        entrar.frame = CGRectMake(100, 200, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.1)
+        entrar.center.x = termsView.popUpView.center.x*0.8
+        entrar.center.y = termsView.popUpView.center.y * 0.9
+        entrar.addTarget(self, action: "entra", forControlEvents: .TouchUpInside)
+        termsView.popUpView.addSubview(entrar)
+        
+        usernameTextField.frame = CGRectMake(0, 0, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.05)
+        usernameTextField.center.x = termsView.popUpView.center.x*0.8
+        usernameTextField.center.y = termsView.popUpView.center.y * 0.5
+        usernameTextField.textAlignment = NSTextAlignment.Center
+        usernameTextField.placeholder = "Username"
+        usernameTextField.backgroundColor = UIColor.whiteColor()
+        usernameTextField.layer.cornerRadius = 4
+        usernameTextField.layer.borderColor = UIColor.grayColor().CGColor
+        usernameTextField.layer.borderWidth = 0.1
+        termsView.popUpView.addSubview(usernameTextField)
+        
+        
+        passwordTextField.frame = CGRectMake(0, 0, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.05)
+        passwordTextField.center.x = termsView.popUpView.center.x*0.8
+        passwordTextField.center.y = termsView.popUpView.center.y * 0.7
+        passwordTextField.secureTextEntry = true
+        passwordTextField.textAlignment = NSTextAlignment.Center
+        passwordTextField.placeholder = "Password"
+        passwordTextField.backgroundColor = UIColor.whiteColor()
+        passwordTextField.layer.cornerRadius = 4
+        passwordTextField.layer.borderColor = UIColor.grayColor().CGColor
+        passwordTextField.layer.borderWidth = 0.1
+        
+        termsView.popUpView.addSubview(passwordTextField)
+        
+        
+        termsView.showInView(self.view)
     }
     
-    func signUpButtonPressed(){
+    func signUpPressed() {
+        termsView = PopUpViewController()
         
-        if (self.usernameTextField.text == "" || self.passwordTextField.text == "")
-        {
-            let alerta = UIAlertController(title: "Atenção", message: "Login ou senha inválido", preferredStyle: .Alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
-            
-            alerta.addAction(cancelAction)
-            self.presentViewController(alerta, animated: true, completion: nil)
-        }
-        else
-        {
-            User.sharedInstance.username = usernameTextField.text
-            User.sharedInstance.password = passwordTextField.text
-            LibraryAPI.sharedInstance.saveUser(User.sharedInstance, sender: self)
-        }
+        var entrar = UIButton()
+        entrar.setTitle("Entrar", forState: UIControlState.Normal)
+        entrar.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        entrar.frame = CGRectMake(100, 200, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.1)
+        entrar.center.x = termsView.popUpView.center.x*0.8
+        entrar.center.y = termsView.popUpView.center.y * 0.9
+        entrar.addTarget(self, action: "cadastra", forControlEvents: .TouchUpInside)
+        termsView.popUpView.addSubview(entrar)
 
+        usernameTextField.frame = CGRectMake(0, 0, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.05)
+        usernameTextField.center.x = termsView.popUpView.center.x*0.8
+        usernameTextField.center.y = termsView.popUpView.center.y * 0.5
+        usernameTextField.textAlignment = NSTextAlignment.Center
+        usernameTextField.placeholder = "Username"
+        usernameTextField.backgroundColor = UIColor.whiteColor()
+        usernameTextField.layer.cornerRadius = 4
+        usernameTextField.layer.borderColor = UIColor.grayColor().CGColor
+        usernameTextField.layer.borderWidth = 0.1
+        termsView.popUpView.addSubview(usernameTextField)
+
+        passwordTextField.frame = CGRectMake(0, 0, termsView.view.frame.size.width*0.725, termsView.view.frame.size.height*0.05)
+        passwordTextField.center.x = termsView.popUpView.center.x*0.8
+        passwordTextField.center.y = termsView.popUpView.center.y * 0.7
+        passwordTextField.secureTextEntry = true
+        passwordTextField.textAlignment = NSTextAlignment.Center
+        passwordTextField.placeholder = "Password"
+        passwordTextField.backgroundColor = UIColor.whiteColor()
+        passwordTextField.layer.cornerRadius = 4
+        passwordTextField.layer.borderColor = UIColor.grayColor().CGColor
+        passwordTextField.layer.borderWidth = 0.1
+        termsView.popUpView.addSubview(passwordTextField)
+
+
+        
+        termsView.showInView(self.view)
     }
     
-    func logInButtonPressed()
-    {
-        
+    func entra() {
         if (self.usernameTextField.text == "" || self.passwordTextField.text == "")
         {
             let alerta = UIAlertController(title: "Atenção", message: "Login ou senha inválido", preferredStyle: .Alert)
@@ -187,7 +224,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             User.sharedInstance.password = passwordTextField.text
             LibraryAPI.sharedInstance.loginUser(User.sharedInstance, sender: self)
         }
-        
+    }
+    
+    func cadastra() {
+        if (self.usernameTextField.text == "" || self.passwordTextField.text == "")
+        {
+            let alerta = UIAlertController(title: "Atenção", message: "Login ou senha inválido", preferredStyle: .Alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            
+            alerta.addAction(cancelAction)
+            self.presentViewController(alerta, animated: true, completion: nil)
+        }
+        else
+        {
+            User.sharedInstance.username = usernameTextField.text
+            User.sharedInstance.password = passwordTextField.text
+            LibraryAPI.sharedInstance.saveUser(User.sharedInstance, sender: self)
+        }
+    }
+    
+    @IBAction func skipLoginButtonPressed()
+    {
+        LibraryAPI.sharedInstance.isLoggedIn = false
+        performSegueWithIdentifier("mainView", sender: nil)
     }
     
     /* Pegando informação e salvando novo usuário */

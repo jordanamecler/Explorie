@@ -145,10 +145,12 @@ class MainViewController: UIViewController,UserInterfaceDelegate, UIGestureRecog
             /* *********************************************
             Adiciona o gesto de voltar */
             
-            var voltar = UIScreenEdgePanGestureRecognizer(target: self, action: "moveViewWithGesture:")
-            voltar.delegate = self
-            voltar.edges = UIRectEdge.Left
-            bookView.addGestureRecognizer(voltar)
+            
+            var voltar = UIButton()
+            voltar.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
+            voltar.frame = CGRectMake(self.view.frame.size.width/10, self.view.frame.height/1.1, 50, 50)
+            voltar.addTarget(self, action: "voltar", forControlEvents: .TouchUpInside)
+            bookView.addSubview(voltar)
             
             centerX = bookView.bounds.size.width / 2
             
@@ -197,23 +199,8 @@ class MainViewController: UIViewController,UserInterfaceDelegate, UIGestureRecog
         return path
     }
     
-    func moveViewWithGesture(gesture:UIScreenEdgePanGestureRecognizer) {
-        
-        if( UIGestureRecognizerState.Began == gesture.state || UIGestureRecognizerState.Changed == gesture.state) {
-            var translation = CGPoint()
-            translation = gesture.translationInView(gesture.view!)
-            bookView.center = CGPointMake(centerX + translation.x, bookView.center.y)
-        }
-        else {
-            UIView.animateWithDuration(0.3, animations: {
-                
-                self.bookView.center = CGPointMake(self.centerX, self.bookView.center.y)
-            })
-        }
-        if( bookView.center.x >= (self.view.frame.width * 1.2) )
-        {
-            bookView.removeFromSuperview()
-        }
+    func voltar() {
+        bookView.removeFromSuperview()
     }
 
     @IBAction func myStoriesButtonPressed() {
@@ -225,8 +212,6 @@ class MainViewController: UIViewController,UserInterfaceDelegate, UIGestureRecog
                 if (story.creator == User.sharedInstance.username){
                         count++
                     }
-                
-                
             }
             
             if (count>0){
